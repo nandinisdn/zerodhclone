@@ -1,32 +1,35 @@
+import { useState, useEffect } from 'react'
 import './App.css'
+import Header from './Header'
+import Products from './Products.jsx'
 
 function App() {
-  let company="flip"
-  let position="dev"
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (darkMode) document.body.classList.add('dark-mode')
+    else document.body.classList.remove('dark-mode')
+  }, [darkMode])
+
   return (
-   <>
-   <section style={{textAlign:"center"}}>
-    <header style={{display:"flex",justifyContent:"space-evenly"}}>
+    <>
+    <section style={{ textAlign: 'center' }}>
+      <button className="theme-toggle" onClick={() => setDarkMode((prev) => !prev)}>
+        {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      </button>
+      <Header />
+      <img src="https://zerodha.com/static/images/landing.svg" alt="" />
+      <h2>Invest in everything</h2>
+    <p>Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.</p>
+    <button id='btn' >SignUp</button>
+    </section>
 
-  
-   
-  <img  height={30} width={100} src="https://zerodha.com/static/images/logo.svg" alt="logo" />
-
-  <nav style ={{display:"flex",gap:"20px",alignItems:"center"}}>
-  <a href="">Sign Up</a>
-  <a href="">About</a>
-  <a href="">Pricing</a>
-  <a href="">Products</a>
-  <a href="">Support</a>
-  </nav>
-    </header>
-  <img src="https://zerodha.com/static/images/landing.svg" alt=""/>
-  <h2>Invest in everything</h2>
-  <p>Online platform to invest in stocks, derivatives, mutual funds, ETFs, bonds, and more.</p>
-  <button id="btn">Sign Up</button>
-   </section>
-   </>
-   
+    <section>
+      <h1>cards</h1>
+    
+    <Products/>
+    </section>
+    </>
   )
 }
 
